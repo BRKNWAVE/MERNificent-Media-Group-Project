@@ -1,30 +1,38 @@
-const crypto = require('crypto');
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import User from '../models/User.js';
 
-// Function to hash password
-const hashPassword = (password) => crypto.createHash('sha256').update(password).digest('hex');
+// Function to hash password is no longer needed, bcrypt is used directly in the model
 
-exports.register = async (req, res) => {
-  const { username, password } = req.body;
-  const hashedPassword = hashPassword(password);
+export const register = async (req, res) => {
+  const { username, password, email, firstName, lastName } = req.body;
+  
   try {
-    const user = new User({ username, password: hashedPassword });
+    // Check if user already exists
+    const existingUser = await User.findOne({ username });
+    if (existingUser) return res.status(400).json({ message: 'User already exists' });
+
+    const user = new User({ username, password, email, firstName, lastName });
     await user.save();
-    res.status(201).json({ message: 'User registered' });
+
+    res.status(201).json({ message: 'User registered successfully!' });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-// Function to check if the hashed password matches user input and return a JWT token if it does
-exports.login = async (req, res) => {
+export const login = async (req, res) => {
   const { username, password } = req.body;
-  const hashedPassword = hashPassword(password);
+
   try {
-    const user = await User.findOne({ username, password: hashedPassword });
-    if (!user) return res.status(401).json({ message: 'Invalid credentials' });
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const user = await User.findOne({ username });
+    if (!user) return res.status(400).json({ message: 'Invalid username or password' });
+
+    // Use the comparePassword method from the User model
+    const isMatch = await user.comparePassword(password);
+    if (!isMatch) return res.status(400).json({ message: 'Invalid username or password' });
+
+    const token = user.generateAuthToken();
     res.json({ token });
   } catch (error) {
     res.status(500).json({ message: error.message });

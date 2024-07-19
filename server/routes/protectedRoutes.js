@@ -1,8 +1,9 @@
-const express = require('express');
+import express from 'express';
+import { authenticateToken } from '../middleware/authMiddleware.js';
+import { getProtectedData } from '../controllers/protectedController.js';
+
 const router = express.Router();
-const authenticateToken = require('../middleware/authMiddleware');
-const protectedController = require('../controllers/protectedController');
 
-router.get('/', authenticateToken, protectedController.getProtectedData);
+router.get('/', authenticateToken, getProtectedData);
 
-module.exports = router;
+export default router;

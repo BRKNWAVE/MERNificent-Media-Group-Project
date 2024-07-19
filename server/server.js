@@ -1,26 +1,29 @@
-// server/server.js
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const dotenv = require('dotenv');
-const authRoutes = require('./routes/authRoutes');
-const protectedRoutes = require('./routes/protectedRoutes');
+import express from 'express';
+import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
+import dotenv from 'dotenv';
+import authRoutes from './routes/authRoutes.js';
+import protectedRoutes from './routes/protectedRoutes.js';
+import productRoutes from './routes/productRoutes.js';
+import adminUserRoutes from './routes/adminUserRoutes.js';
 
-// Load environment variables DURING TESTING YOU WILL NEED TO MAKE ONE YOURSELF IN THE ROOT DIRECTORY OF THE SERVER
 dotenv.config();
 
+// Connect to MongoDB
+mongoose.connect(process.env.MONGODB_URI);
+
+const db = mongoose.connection;
+db.on('error', (error) => console.error(error));
+db.once('open', () => console.log('Connected to Mongo DB'));
+
 const app = express();
+const PORT = process.env.PORT || 5000;
+
 app.use(bodyParser.json());
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Connected to MongoDB'))
-  .catch((err) => console.error('Failed to connect to MongoDB', err));
-
-// Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/protected', protectedRoutes);
+app.use('/api/products', productRoutes);
+app.use('/api/admin/users', adminUserRoutes); // Use admin user routes
 
-// Start server on port 5000
-const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
