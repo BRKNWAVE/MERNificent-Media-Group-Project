@@ -88,6 +88,7 @@ const Navbar = () => {
           </SearchContainer>
         </Centre>
         <Right>
+          <MenuItem>About</MenuItem>
           <MenuItem>Register</MenuItem>
           <MenuItem>Sign In</MenuItem>
           <MenuItem>

@@ -62,5 +62,5 @@ To set up the project locally, follow these steps:
 ## Acknowledgments / Technology Used
     Material UI: https://mui.com/
     styled-components: https://styled-components.com/
-    Images used are royalty-free courtesy of http://pexels.com
+    Images used are royalty-free courtesy of http://pexels.com or from https://prada.com for educational purposes only.
     MERN Stack
