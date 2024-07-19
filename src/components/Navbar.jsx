@@ -69,7 +69,7 @@ const SearchIcon = styled(Search)`
 
 const MenuItem = styled.div`
   font-size: 16px;
-  margin-left: 10px; 
+  margin-left: 50px; 
   cursor: pointer;
   padding-top: 2px;
 `;
@@ -88,6 +88,7 @@ const Navbar = () => {
           </SearchContainer>
         </Centre>
         <Right>
+          <MenuItem>Products</MenuItem>
           <MenuItem>About</MenuItem>
           <MenuItem>Register</MenuItem>
           <MenuItem>Sign In</MenuItem>
