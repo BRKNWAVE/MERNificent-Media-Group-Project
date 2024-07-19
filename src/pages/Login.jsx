@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import styled from 'styled-components';
@@ -46,7 +47,7 @@ const StyledInput = styled(MuiInput)`
   width: 100%;
 `;
 
-const ForgotPasswordLink = styled.a`
+const ForgotPasswordLink = styled(Link)`
   color: #007bff;
   text-decoration: none;
   font-size: 14px;
@@ -58,7 +59,7 @@ const ForgotPasswordLink = styled.a`
   }
 `;
 
-const CreateAccountLink = styled.a`
+const CreateAccountLink = styled(Link)`
   color: #007bff;
   text-decoration: none;
   font-size: 14px;
@@ -89,8 +90,8 @@ const Login = () => {
           <StyledInput placeholder="Username" />
           <StyledInput placeholder="Password" type="password" />
           <StyledButton variant="contained">LOGIN</StyledButton>
-          <CreateAccountLink>Create a New Account</CreateAccountLink>
-          <ForgotPasswordLink>Forgot Your Password?</ForgotPasswordLink>
+          <CreateAccountLink to="/register">Create a New Account</CreateAccountLink>
+          <ForgotPasswordLink to="/forgot-password">Forgot Your Password?</ForgotPasswordLink>
         </Form>
       </Wrapper>
       <Footer />
