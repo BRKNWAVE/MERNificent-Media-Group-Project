@@ -1,4 +1,4 @@
-# MERNificent Media - ECommerce App
+# MERNificent Media - Product Gallery App
 
 Welcome to the **MERNificent Media** eCommerce app! This application is built using the **MERN** stack and leverages **Material UI** and **styled-components** for a stylish user interface.
 
@@ -8,20 +8,29 @@ Welcome to the **MERNificent Media** eCommerce app! This application is built us
 - [Features](#features)
 - [Technology Stack](#technology-stack)
 - [Installation](#installation)
-- [Usage](#usage)
 - [Acknowledgments](#acknowledgments)
 
 ## Introduction
 
-**MERNificent Media** is an eCommerce application designed to provide a robust and interactive shopping experience. It utilizes the MERN stack to deliver a full-stack application with a modern and responsive user interface.
+This readme provides an overview for the Product Gallery Application developed by MERNificent Media. It outlines the basic functions and specifications for the MERN application.
 
 ## Features
 
-- **User Authentication**: Register, log in, and manage user accounts.
-- **Product Listing**: Browse through a variety of products with detailed descriptions and pricing.
-- **Search Functionality**: Search for products using a dynamic search bar.
-- **Shopping Cart**: Add items to a shopping cart and proceed to checkout.
-- **Order Management**: Track and manage your orders.
+**The application allows users to:**
+
+- **Create an Account:** Register with a unique email and password.
+
+- **Log In:** Access accounts using credentials.
+
+- **Edit Password:** Update account passwords through a secure interface.
+
+- **View Product Gallery:** Browse through various products.
+
+- **Access Detailed Views:** View detailed information about individual products.
+
+**Administrative users have additional privileges to:**
+
+- **Perform CRUD Operations:** Create, read, update, and delete both user accounts and products.
 
 ## Technology Stack
 
@@ -57,9 +66,9 @@ To set up the project locally, follow these steps:
 
 5. **Run the Application**:
 
-    npm start
+    npm start in the root directory, then cd to the server directory and run node server.js
 
-## Acknowledgments / Technology Used
+## Acknowledgments
     Material UI: https://mui.com/
     styled-components: https://styled-components.com/
     Images used are royalty-free courtesy of http://pexels.com or from https://prada.com for educational purposes only.
