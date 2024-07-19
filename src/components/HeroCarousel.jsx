@@ -6,7 +6,7 @@ import { carouselItems } from '../data/data';
 
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 87vh; /* required to have the entire page fit on a 1080p screen without scrolling, change as needed... looks nice*/
   display: flex;
   justify-content: center; 
   align-items: center; 
@@ -87,8 +87,10 @@ const Button = styled.button`
 `;
 
 const Image = styled.img`
-  max-width: 90%;
+  max-width: 100%;
   max-height: 100%;
+  border-radius: 300px;
+  
 `;
 
 const HeroCarousel = () => {
