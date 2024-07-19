@@ -20,8 +20,11 @@ const Wrapper = styled.div`
 // Equally space the left, center, and right components using flexbox
 const Left = styled.div`
   flex: 1;
+  display: flex;
+  align-items: center; // Align items vertically
 `;
 
+// Center and Right components
 const Centre = styled.div`
   flex: 1;
   display: flex;
@@ -36,11 +39,23 @@ const Right = styled.div`
   justify-content: flex-end;
 `;
 
+// Logo Container Component to hold the logo image and text together
+const LogoContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 // Logo Component
 const Logo = styled.h1`
   cursor: pointer;
   font-weight: bold;
   font-size: 20px;
+  margin-left: 10px; 
+`;
+
+// Logo Image Component
+const LogoImg = styled.img`
+  width: 30px;
 `;
 
 // Search Container and Placeholder Input
@@ -87,7 +102,10 @@ const Navbar = () => {
       <Wrapper>
         <Left>
           <StyledLink to="/">
-            <Logo>MERNIFICENT MEDIA</Logo>
+            <LogoContainer>
+              <LogoImg src="src/assets/img/other/logo.png" alt="Logo" />
+              <Logo>MERNIFICENT MEDIA</Logo>
+            </LogoContainer>
           </StyledLink>
         </Left>
         <Centre>

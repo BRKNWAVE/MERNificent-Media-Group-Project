@@ -13,7 +13,9 @@ const Container = styled.div`
   background-color: #F7F7F7;
 `;
 
-const Desc = styled.p`
+const Desc = styled.div`
+  display: flex;
+  align-items: center;
   margin: 0;
 `;
 
@@ -23,10 +25,20 @@ const Left = styled.div`
   align-items: center;
 `;
 
+const LogoContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 const Logo = styled.h1`
   cursor: pointer;
   font-weight: bold;
   font-size: 20px;
+  margin-left: 10px;
+`;
+
+const LogoImg = styled.img`
+  width: 30px;
 `;
 
 const SocialContainer = styled.div`
@@ -35,7 +47,7 @@ const SocialContainer = styled.div`
 `;
 
 const SocialIcon = styled.div`
-  margin: 0 10px;
+  margin-left: 10px;
   cursor: pointer;
 `;
 
@@ -69,19 +81,20 @@ const Footer = () => {
     <Container>
       <Left>
         <StyledLink to="/">
-          <Logo>MERNIFICENT MEDIA</Logo>
+          <LogoContainer>
+            <LogoImg src="src/assets/img/other/logo.png" alt="Logo" />
+            <Logo>MERNIFICENT MEDIA</Logo>
+          </LogoContainer>
         </StyledLink>
       </Left>
       <Centre />
       <Right>
-        <SocialContainer>
-          <Link href="https://github.com/BRKNWAVE/MERNificent-Media-Group-Project" target="_blank" rel="noopener noreferrer">
-            <SocialIcon>
-              <GitHubIcon />
-            </SocialIcon>
-          </Link>
-        </SocialContainer>
-        <Desc>GitHub Repo Link</Desc>
+        <Desc>
+          <span>GitHub Repo Link</span>
+          <SocialIcon>
+            <GitHubIcon />
+          </SocialIcon>
+        </Desc>
       </Right>
     </Container>
   );

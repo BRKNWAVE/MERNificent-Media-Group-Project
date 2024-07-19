@@ -53,11 +53,12 @@ const Agreement = styled.span`
 `;
 
 const StyledButton = styled(MuiButton)`
-  background-color: #9FE2BF;
-  color: black;
-  &:hover {
+  && {
+    background-color: #9FE2BF;
+    color: black;
+    &:hover {
     background-color: #7fbd9a;
-  }
+  }}
 `;
 
 const Register = () => {
@@ -74,7 +75,7 @@ const Register = () => {
           <StyledInput placeholder="Password" type="password" />
           <StyledInput placeholder="Confirm Password" type="password" />
           <Agreement>
-            By creating an account I consent to the processing of my personal data in accordance with the <b>PRIVACY POLICY</b>
+            By creating an account I consent to the processing of my personal data for educational purposes.
           </Agreement>
           <StyledButton variant="contained">CREATE</StyledButton>
         </Form>

@@ -99,3 +99,35 @@ export const products = [
     desc: "Nunc condimentum justo sit amet justo faucibus, nec lacinia neque tempus."
   },
 ];
+
+
+// FAKE USER DATA FOR FRONTEND
+// DELETE THIS WHEN YOU BUILD THE SERVER
+// DELETE IT WHEN YOU BUILD THE SERVER
+
+export const users = [
+  {
+    id: 1,
+    firstName: "John",
+    lastName: "Doe",
+    username: "johndoe",
+    email: "johndoe@example.com",
+    password: "password123",
+  },
+  {
+    id: 2,
+    firstName: "Jane",
+    lastName: "Smith",
+    username: "janesmith",
+    email: "janesmith@example.com",
+    password: "password123",
+  },
+  {
+    id: 3,
+    firstName: "Alice",
+    lastName: "Johnson",
+    username: "alicejohnson",
+    email: "alicejohnson@example.com",
+    password: "password123",
+  },
+];

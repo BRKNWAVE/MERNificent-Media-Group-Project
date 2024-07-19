@@ -47,12 +47,13 @@ const StyledInput = styled(MuiInput)`
 `;
 
 const SubmitButton = styled(MuiButton)`
-  background-color: #9FE2BF;
-  color: black;
-  margin-bottom: 20px;
-  &:hover {
+  && {
+    background-color: #9FE2BF;
+    color: black;
+    margin: 20px;
+    &:hover {
     background-color: #7fbd9a;
-  }
+  }}
 `;
 
 const BackToLoginLink = styled.a`

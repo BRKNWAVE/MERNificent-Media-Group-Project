@@ -9,6 +9,13 @@ import Register from './pages/Register';
 import EditAccount from './pages/EditAccount';
 import ForgotPassword from './pages/ForgotPassword';
 import About from './pages/About';
+import AdminDashboard from './pages/AdminDashboard';
+import ManageUsers from './pages/ManageUsers';
+import ManageProducts from './pages/ManageProducts';
+import AdminLogin from './pages/AdminLogin';
+import AdminNavbar from './components/AdminNavbar';
+import EditProduct from './pages/EditProduct';
+import EditUser from './pages/EditUser';
 
 // Create a MaterialUI theme instance.
 const theme = createTheme();
@@ -26,6 +33,14 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/edit-account" element={<EditAccount />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+
+          {/* Admin Routes */}
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/manage-users" element={<ManageUsers />} />
+          <Route path="/admin/edit-user/:id" element={<EditUser />} />
+          <Route path="/admin/manage-products" element={<ManageProducts />} />
+          <Route path="/admin/edit-product/:id" element={<EditProduct />} />
+          <Route path="/admin/login" element={<AdminLogin />} />
         </Routes>
       </Router>
     </ThemeProvider>
