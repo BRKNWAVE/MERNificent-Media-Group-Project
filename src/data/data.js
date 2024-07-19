@@ -25,3 +25,7 @@ export const carouselItems = [
         bg: "#FE828C",
     },
 ];
+
+export const categories = [
+
+];

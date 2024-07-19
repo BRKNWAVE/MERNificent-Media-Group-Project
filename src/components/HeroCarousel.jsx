@@ -89,7 +89,8 @@ const Button = styled.button`
 const Image = styled.img`
   max-width: 100%;
   max-height: 100%;
-  border-radius: 300px;
+  border-radius: 200px;
+  object-fit: cover;
   
 `;
 
