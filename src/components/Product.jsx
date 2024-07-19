@@ -1,5 +1,6 @@
 import { SearchOutlined } from '@mui/icons-material';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -57,15 +58,17 @@ const Icon = styled.div`
 
 const Product = ({ item }) => {
   return (
-    <Container>
-      <Overlay />
-      <Circle>
-        <Icon>
-          <SearchOutlined />
-        </Icon>
-      </Circle>
-      <Image src={item.img} alt={`Product ${item.id}`} />
-    </Container>
+    <Link to={`/product/${item.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+      <Container>
+        <Overlay />
+        <Circle>
+          <Icon>
+            <SearchOutlined />
+          </Icon>
+        </Circle>
+        <Image src={item.img} alt={`Product ${item.id}`} />
+      </Container>
+    </Link>
   );
 };
 

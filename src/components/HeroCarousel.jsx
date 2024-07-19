@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import styled from '@emotion/styled';
@@ -86,6 +87,11 @@ const Button = styled.button`
   text-transform: uppercase;
 `;
 
+const ShopLink = styled(Link)`
+  text-decoration: none;
+  color: inherit; /* Inherit text color from parent component */
+`;
+
 const Image = styled.img`
   max-width: 100%;
   max-height: 100%;
@@ -119,7 +125,9 @@ const HeroCarousel = () => {
             <InfoContainer>
               <Title>{item.title}</Title>
               <Description dangerouslySetInnerHTML={{ __html: item.desc }} />
-              <Button>Shop Now</Button>
+              <ShopLink to="/product-gallery">
+                <Button>Shop Now</Button>
+              </ShopLink>
             </InfoContainer>
           </Carousel>
         ))}

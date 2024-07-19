@@ -1,8 +1,6 @@
 import React from 'react';
-import Navbar from './Navbar';
-import Footer from './Footer';
 import { products } from '../data/data';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 const Container = styled.div`
   display: flex;
@@ -28,7 +26,7 @@ const ImgContainer = styled.div`
 `;
 
 const Img = styled.img`
-  max-width: 65%; /*  made the image fit correctly on a 1920 x 1080 screen without scrolling... */
+  max-width: 65%;
   height: 100%;
   border-radius: 8px;
 `;
@@ -56,12 +54,17 @@ const Price = styled.p`
   font-weight: bold;
 `;
 
-const ProductDetails = () => {
-  const product = products[0];
+const ProductDetails = ({ productId }) => {
+  // Make sure productId is a string
+  const productIdStr = String(productId);
+  const product = products.find(p => String(p.id) === productIdStr);
+
+  if (!product) {
+    return <div>Product not found</div>;
+  }
 
   return (
     <Container>
-      <Navbar />
       <Wrapper>
         <ImgContainer>
           <Img src={product.img} alt={product.name} />
@@ -72,7 +75,6 @@ const ProductDetails = () => {
           <Price>${product.price}</Price>
         </InfoContainer>
       </Wrapper>
-      <Footer />
     </Container>
   );
 };

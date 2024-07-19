@@ -1,12 +1,17 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
+import ProductDetails from '../components/ProductDetails';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import ProductDetails from '../components/ProductDetails';
 
 const ProductDetailsPage = () => {
+  const { id } = useParams();
+
   return (
     <div className="container">
-      <ProductDetails />
+      <Navbar />
+      <ProductDetails productId={id} />
+      <Footer />
     </div>
   );
 };

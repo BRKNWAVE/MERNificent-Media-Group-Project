@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import { Link as RouterLink } from 'react-router-dom';
 
 const Container = styled.div`
   display: flex;
@@ -58,11 +59,18 @@ const Link = styled.a`
   text-decoration: none;
 `;
 
+const StyledLink = styled(RouterLink)`
+  text-decoration: none;
+  color: inherit;
+`;
+
 const Footer = () => {
   return (
     <Container>
       <Left>
-        <Logo>MERNIFICENT MEDIA</Logo>
+        <StyledLink to="/">
+          <Logo>MERNIFICENT MEDIA</Logo>
+        </StyledLink>
       </Left>
       <Centre />
       <Right>

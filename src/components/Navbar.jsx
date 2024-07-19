@@ -1,6 +1,7 @@
 import React from 'react';
 import { Badge } from '@mui/material';
 import { Search, ShoppingCart as ShoppingCartIcon } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 // Navbar container
@@ -64,7 +65,7 @@ const Input = styled.input`
 
 const SearchIcon = styled(Search)`
   position: absolute;
-  right: 10px; /* Adjust the position of the searchicon inside the container */
+  right: 10px; /* Adjust the position of the search icon inside the container */
 `;
 
 const MenuItem = styled.div`
@@ -74,12 +75,20 @@ const MenuItem = styled.div`
   padding-top: 2px;
 `;
 
+// Styled Link for navigation
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit; /* Inherit color from parent */
+`;
+
 const Navbar = () => {
   return (
     <Container>
       <Wrapper>
         <Left>
-          <Logo>MERNIFICENT MEDIA</Logo>
+          <StyledLink to="/">
+            <Logo>MERNIFICENT MEDIA</Logo>
+          </StyledLink>
         </Left>
         <Centre>
           <SearchContainer>
@@ -88,10 +97,18 @@ const Navbar = () => {
           </SearchContainer>
         </Centre>
         <Right>
-          <MenuItem>Products</MenuItem>
-          <MenuItem>About</MenuItem>
-          <MenuItem>Register</MenuItem>
-          <MenuItem>Sign In</MenuItem>
+          <StyledLink to="/product-gallery">
+            <MenuItem>Products</MenuItem>
+          </StyledLink>
+          <StyledLink to="/about">
+            <MenuItem>About</MenuItem>
+          </StyledLink>
+          <StyledLink to="/register">
+            <MenuItem>Register</MenuItem>
+          </StyledLink>
+          <StyledLink to="/login">
+            <MenuItem>Sign In</MenuItem>
+          </StyledLink>
           <MenuItem>
             <Badge badgeContent={4} color="primary">
               <ShoppingCartIcon />
