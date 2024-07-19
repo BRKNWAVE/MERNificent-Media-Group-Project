@@ -1,6 +1,6 @@
 # MERNificent Media - Product Gallery App
 
-Welcome to the **MERNificent Media** eCommerce app! This application is built using the **MERN** stack and leverages **Material UI** and **styled-components** for a stylish user interface.
+Welcome to the **MERNificent Media** Product Gallery app! This application is built using the **MERN** stack and leverages **Material UI** and **styled-components** for a stylish user interface.
 
 ## Table of Contents
 
