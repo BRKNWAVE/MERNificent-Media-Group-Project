@@ -59,7 +59,8 @@ To set up the project locally, follow these steps:
 
     npm start
 
-### Acknowledgments / Technology Used
+## Acknowledgments / Technology Used
     Material UI: https://mui.com/
     styled-components: https://styled-components.com/
+    Images used are royalty-free courtesy of http://pexels.com
     MERN Stack

@@ -5,13 +5,13 @@ import styled from '@emotion/styled';
 
 // Navbar container
 const Container = styled.div`
-  height: 40px;
+  height: 60px;
   background-color: #d3d3d3;
 `;
 
 // Use a wrapper to contain the left, center, and right components
 const Wrapper = styled.div`
-  padding: 10px 20px;
+  padding: 20px 20px;
   display: flex;
   justify-content: space-between;
 `;
@@ -39,33 +39,36 @@ const Right = styled.div`
 const Logo = styled.h1`
   cursor: pointer;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 20px;
 `;
 
 // Search Container and Placeholder Input
 const SearchContainer = styled.div`
-  position: relative; /* Set position to relative */
+  position: relative; 
   border: 0.5px solid lightgray;
   display: flex;
   align-items: center;
   padding: 0 10px;
-  border-radius: 4px; /* Optional: add border-radius for rounded corners */
+  border-radius: 20px;
+  height: 20px;
 `;
 
 const Input = styled.input`
   border: none;
   outline: none;
-  padding-left: 30px; /* Add padding to the left to make space for the icon */
+  padding-left: 30px; /* padding to the left to make space for the magnifying glass icon */
   flex: 1;
+  border-radius: 20px;
+  height: 140%;
 `;
 
 const SearchIcon = styled(Search)`
-  position: absolute; /* Position the icon absolutely */
-  left: 10px; /* Adjust the position of the icon inside the container */
+  position: absolute;
+  right: 10px; /* Adjust the position of the searchicon inside the container */
 `;
 
 const MenuItem = styled.div`
-  font-size: 14px;
+  font-size: 16px;
   margin-left: 10px; 
   cursor: pointer;
   padding-top: 2px;
