@@ -1,5 +1,5 @@
 
-// Carousel images
+// Carousel data with images, titles, descriptions, and background colors
 import Hero1 from '../assets/img/hero/Hero1.png';
 import Hero2 from '../assets/img/hero/Hero2.jpg';
 import Hero3 from '../assets/img/hero/Hero3.jpg';
@@ -28,9 +28,6 @@ export const carouselItems = [
   },
 ];
 
-// This array is blank and will contain categories for the products in the future.
-export const categories = [];
-
 // Product images
 import Product1 from '../assets/img/products/product1.jpg';
 import Product2 from '../assets/img/products/product2.jpg';
@@ -41,6 +38,7 @@ import Product6 from '../assets/img/products/product6.jpg';
 import Product7 from '../assets/img/products/product7.jpg';
 import Product8 from '../assets/img/products/product8.jpg';
 
+// Product data with images, names, prices, and descriptions
 export const products = [
   {
     id: 1,
@@ -100,36 +98,6 @@ export const products = [
   },
 ];
 
+// Logo image stored for later build/dist for the Navbar component and Footer component
 import logoimg from '../assets/img/other/logo.png';
 export const logoImage = logoimg;
-
-// FAKE USER DATA FOR FRONTEND
-// DELETE THIS WHEN YOU BUILD THE SERVER
-// DELETE IT WHEN YOU BUILD THE SERVER
-
-export const users = [
-  {
-    id: 1,
-    firstName: "John",
-    lastName: "Doe",
-    username: "johndoe",
-    email: "johndoe@example.com",
-    password: "password123",
-  },
-  {
-    id: 2,
-    firstName: "Jane",
-    lastName: "Smith",
-    username: "janesmith",
-    email: "janesmith@example.com",
-    password: "password123",
-  },
-  {
-    id: 3,
-    firstName: "Alice",
-    lastName: "Johnson",
-    username: "alicejohnson",
-    email: "alicejohnson@example.com",
-    password: "password123",
-  },
-];

@@ -6,6 +6,8 @@ import styled from 'styled-components';
 import { Button as MuiButton, Input as MuiInput } from '@mui/material';
 import LoginBG from '../assets/img/account/LoginBG.jpg';
 
+
+// Styles for the Login component using styled-components, && specificity is used to override MUI styles for buttons throughout the application
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -81,6 +83,7 @@ const StyledButton = styled(MuiButton)`
   }
 `;
 
+// Login component with a state to store the form data, handleChange and handleSubmit functions to handle form input and submission, and a form with input fields for username and password
 const Login = () => {
   const [formData, setFormData] = useState({
     username: '',
@@ -96,6 +99,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // Send a login / POST request to the server with the form data
       const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -103,13 +107,13 @@ const Login = () => {
       });
       const result = await response.json();
       if (response.ok) {
-        localStorage.setItem('token', result.token);
-        navigate('/');
+        localStorage.setItem('token', result.token); // Store the JWT token in the browser's local storage
+        navigate('/'); // Redirect to the home page after successful login
       } else {
-        alert(result.error);
+        alert(result.error); // Show an alert with the error message if the request is not successful
       }
     } catch (err) {
-      alert('An error occurred');
+      alert('An error occurred'); // Show a generic error message otherwise
     }
   };
 
@@ -123,7 +127,6 @@ const Login = () => {
           <StyledInput name="password" placeholder="Password" type="password" onChange={handleChange} />
           <StyledButton variant="contained" type="submit">LOGIN</StyledButton>
           <CreateAccountLink to="/register">Create a New Account</CreateAccountLink>
-          <ForgotPasswordLink to="/forgot-password">Forgot Your Password?</ForgotPasswordLink>
         </Form>
       </Wrapper>
       <Footer />

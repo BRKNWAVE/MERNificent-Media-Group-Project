@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import { Button as MuiButton, Input as MuiInput } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
+
+// Styles for the EditAccount component using styled-components, && specificity is used to override MUI styles for buttons throughout the application
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -92,6 +94,7 @@ const BackToHomeLink = styled.a`
   }
 `;
 
+// EditAccount component that displays a form to edit user account details
 const EditAccount = () => {
   const [formData, setFormData] = useState({
     username: '',
@@ -101,9 +104,9 @@ const EditAccount = () => {
     password: '',
     confirmPassword: ''
   });
-
+// Use a state to manage password visibility and default it to hide the password
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate(); // Use useNavigate
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Fetch user data and populate form fields
@@ -124,21 +127,25 @@ const EditAccount = () => {
           confirmPassword: ''
         });
       } catch (error) {
-        console.error('Failed to fetch user data', error);
+        console.error('Failed to fetch user data', error); // Error catching
       }
     };
 
-    fetchUserData();
+    fetchUserData(); // Call the function to fetch user data
   }, []);
 
+  // Handle any changes to the form fields
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
+  // Call the handlePasswordToggle function to toggle the password visibility
   const handlePasswordToggle = () => {
     setShowPassword(!showPassword);
   };
 
+  // Handle the delete account functionality and confirm the action with a window alert before proceeding with the delete request
+  // If the user confirms the delete action, send a DELETE request to the server to delete the account
+  // If the request is successful, show an alert to the user that the account was deleted successfully and remove the token from local storage
   const handleDelete = async () => {
     if (window.confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
       try {
@@ -162,7 +169,9 @@ const EditAccount = () => {
       }
     }
   };
-
+  // Handle the form submission and send a PUT request to the server to update the user account details
+  // If the request is successful, show an alert to the user that the account was updated successfully
+  // If the request is not successful, show an alert with the error message
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.username || !formData.firstName || !formData.lastName || !formData.email || (formData.password && formData.password !== formData.confirmPassword)) {

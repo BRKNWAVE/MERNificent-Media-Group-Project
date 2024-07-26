@@ -2,6 +2,8 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { isAuthenticated } from '../utils/authUtility';
 
+// ProtectedRoute component to protect routes from unauthorized access using isAuthenticated function from authUtility.js
+// We use this in our App.js and routes to redirect the user to the login page if they are not authenticated
 const ProtectedRoute = ({ element: Component }) => {
   const [authenticated, setAuthenticated] = React.useState(null);
 

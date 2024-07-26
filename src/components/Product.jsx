@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+// Styles for the Product component using styled-components
 const Container = styled.div`
   flex: 1;
   margin: 5px;
@@ -18,7 +19,7 @@ const Image = styled.img`
   object-fit: cover;
   transition: opacity 0.3s ease;
 `;
-
+// Hover effect on the image
 const Overlay = styled.div`
   position: absolute;
   top: 0;
@@ -32,7 +33,7 @@ const Overlay = styled.div`
     opacity: 1;
   }
 `;
-
+// Circle component to hold the search icon
 const Circle = styled.div`
   width: 80px;
   height: 80px;
@@ -50,12 +51,13 @@ const Circle = styled.div`
     opacity: 1;
   }
 `;
-
+// Search icon
 const Icon = styled.div`
   color: black;
   font-size: 32px;
 `;
 
+// Displays a product image with a search icon
 const Product = ({ item }) => {
   return (
     <Link to={`/product/${item.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>

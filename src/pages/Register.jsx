@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { Button as MuiButton, Input as MuiInput } from '@mui/material';
 import RegisterBG from '../assets/img/account/RegisterBG.jpg';
 
+// Styles for the Register component using styled-components, && specificity is used to override MUI styles for buttons throughout the application
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -61,7 +62,7 @@ const StyledButton = styled(MuiButton)`
     }
   }
 `;
-
+// Displays a registration form and use the useState hook to manage form data
 const Register = () => {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -71,7 +72,7 @@ const Register = () => {
     password: '',
     confirmPassword: ''
   });
-
+// Handle form input changes and form submission
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -83,6 +84,7 @@ const Register = () => {
       return;
     }
     try {
+      // Send a registration request to the server
       const response = await fetch('/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -98,7 +100,7 @@ const Register = () => {
       if (response.ok) {
         window.location.href = '/login'; // Redirect to login page after successful registration
       } else {
-        alert(result.error);
+        alert(result.error); // Else show an error
       }
     } catch (err) {
       alert('An error occurred');

@@ -4,6 +4,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import { Link as RouterLink } from 'react-router-dom';
 import { logoImage } from '../data/data';
 
+// Styles for the Footer component using Emotion
 const Container = styled.div`
   display: flex;
   justify-content: space-between;

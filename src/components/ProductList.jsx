@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Product from './Product';
 import { products } from '../data/data';
 
+// Styles for the Product Gallery component using styled-components
 const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -11,6 +12,7 @@ const Container = styled.div`
   padding: 20px;
 `;
 
+// Displays a list of products using the Product component and pulls data from the products array in data.js
 const ProductList = () => {
   return (
     <Container>

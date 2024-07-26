@@ -7,15 +7,7 @@ import ProductDetailsPage from './pages/ProductDetailsPage';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import EditAccount from './pages/EditAccount';
-import ForgotPassword from './pages/ForgotPassword';
 import About from './pages/About';
-import AdminDashboard from './pages/AdminDashboard';
-import ManageUsers from './pages/ManageUsers';
-import ManageProducts from './pages/ManageProducts';
-import AdminLogin from './pages/AdminLogin';
-import AdminNavbar from './components/AdminNavbar';
-import EditProduct from './pages/EditProduct';
-import EditUser from './pages/EditUser';
 import ProtectedRoute from './components/ProtectedRoute';
 
 // Create a MaterialUI theme instance.

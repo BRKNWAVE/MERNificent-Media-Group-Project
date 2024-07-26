@@ -6,6 +6,7 @@ import styled from '@emotion/styled';
 import { isAuthenticated, signOut } from '../utils/authUtility';
 import { logoImage } from '../data/data';
 
+// Navbar styles using Emotion
 // Navbar container
 const Container = styled.div`
   height: 60px;
@@ -99,9 +100,10 @@ const StyledLink = styled(Link)`
 `;
 
 const Navbar = () => {
+  // State to check if user is authenticated and a hook to navigate to different routes
   const [authenticated, setAuthenticated] = useState(false);
   const navigate = useNavigate();
-
+  // Check if user is authenticated when the component mounts
   useEffect(() => {
     const checkAuth = async () => {
       const status = await isAuthenticated();
@@ -110,13 +112,14 @@ const Navbar = () => {
 
     checkAuth();
   }, []);
-
+// Function to handle sign out on the Navbar when the user clicks on the Sign Out button
   const handleSignOut = () => {
     signOut();
     setAuthenticated(false);
     navigate('/login'); // Redirect to login page after signing out
   };
 
+  // Conditional/Dynamic rendering of the Navbar based on the user's authentication status (logged in or not)
   return (
     <Container>
       <Wrapper>

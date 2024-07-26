@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import styled from '@emotion/styled';
 
+// Styles for the About page using Emotion
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -38,6 +39,7 @@ const Text = styled.p`
   margin-bottom: 20px;
 `;
 
+// Basic Lorem text and wrapper to display on the About page
 const About = () => {
   return (
     <Container>

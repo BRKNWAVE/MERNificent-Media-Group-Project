@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link } from 'react-router-dom';
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import styled from '@emotion/styled';
 import { carouselItems } from '../data/data';
 
+
+// Styles for the HeroCarousel component using Emotion
 const Container = styled.div`
   width: 100%;
   height: 87vh; /* required to have the entire page fit on a 1080p screen without scrolling, change as needed... looks nice*/
@@ -100,6 +102,11 @@ const Image = styled.img`
   
 `;
 
+// Use a state variable to keep track of the current index of the carousel and update it when the user clicks on the left or right arrow
+// Use the handleClick function to update the carouselIndex state variable based on the direction of the arrow clicked
+// If the direction is "left" and the current index is greater than -1 (the first image), then decrement the index by 1
+// If the direction is "right" and the current index is less than 1 (the last image), then increment the index by 1
+// This will allow the carousel to loop through the images in a circular manner
 const HeroCarousel = () => {
   const [carouselIndex, setCarouselIndex] = useState(-1);
 
