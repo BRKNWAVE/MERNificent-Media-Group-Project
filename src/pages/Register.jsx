@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import styled from 'styled-components';
@@ -57,27 +57,70 @@ const StyledButton = styled(MuiButton)`
     background-color: #9FE2BF;
     color: black;
     &:hover {
-    background-color: #7fbd9a;
-  }}
+      background-color: #7fbd9a;
+    }
+  }
 `;
 
 const Register = () => {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (formData.password !== formData.confirmPassword) {
+      alert('Passwords do not match');
+      return;
+    }
+    try {
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          username: formData.username,
+          email: formData.email,
+          password: formData.password
+        }),
+      });
+      const result = await response.json();
+      if (response.ok) {
+        window.location.href = '/login'; // Redirect to login page after successful registration
+      } else {
+        alert(result.error);
+      }
+    } catch (err) {
+      alert('An error occurred');
+    }
+  };
+
   return (
     <Container>
       <Navbar />
       <Wrapper>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Title>CREATE AN ACCOUNT</Title>
-          <StyledInput placeholder="Name" />
-          <StyledInput placeholder="Last Name" />
-          <StyledInput placeholder="Username" />
-          <StyledInput placeholder="Email" />
-          <StyledInput placeholder="Password" type="password" />
-          <StyledInput placeholder="Confirm Password" type="password" />
+          <StyledInput name="firstName" placeholder="First Name" onChange={handleChange} />
+          <StyledInput name="lastName" placeholder="Last Name" onChange={handleChange} />
+          <StyledInput name="username" placeholder="Username" onChange={handleChange} />
+          <StyledInput name="email" placeholder="Email" type="email" onChange={handleChange} />
+          <StyledInput name="password" placeholder="Password" type="password" onChange={handleChange} />
+          <StyledInput name="confirmPassword" placeholder="Confirm Password" type="password" onChange={handleChange} />
           <Agreement>
             By creating an account I consent to the processing of my personal data for educational purposes.
           </Agreement>
-          <StyledButton variant="contained">CREATE</StyledButton>
+          <StyledButton variant="contained" type="submit">CREATE</StyledButton>
         </Form>
       </Wrapper>
       <Footer />

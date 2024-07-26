@@ -1,62 +1,25 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
 
-// Define the user schema
-const userSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    required: true,
-    unique: true,
-    trim: true
-  },
-  password: {
-    type: String,
-    required: true
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    trim: true
-  },
-  firstName: {
-    type: String,
-    required: true
-  },
-  lastName: {
-    type: String,
-    required: true
-  }
+const UserSchema = new mongoose.Schema({
+  firstName: { type: String, required: true },
+  lastName: { type: String, required: true },
+  username: { type: String, required: true, unique: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  isAdmin: { type: Boolean, default: false },
 });
 
-// Hash the password before saving the user
-userSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) return next();
-  try {
+UserSchema.pre('save', async function (next) {
+  if (this.isModified('password')) {
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
-    next();
-  } catch (err) {
-    next(err);
   }
+  next();
 });
 
-// Function to compare password hash encrypted with bcrypt to user input
-userSchema.methods.comparePassword = async function (candidatePassword) {
-  return await bcrypt.compare(candidatePassword, this.password);
+UserSchema.methods.comparePassword = function (password) {
+  return bcrypt.compare(password, this.password);
 };
 
-// Method to generate JWT for authorization
-userSchema.methods.generateAuthToken = function () {
-  const token = jwt.sign(
-    { _id: this._id, username: this.username },
-    process.env.JWT_SECRET,
-    { expiresIn: '1h' }
-  );
-  return token;
-};
-
-const User = mongoose.model('User', userSchema);
-
-export default User;
+export default mongoose.model('User', UserSchema);

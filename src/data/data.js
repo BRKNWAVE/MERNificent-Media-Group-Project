@@ -100,6 +100,8 @@ export const products = [
   },
 ];
 
+import logoimg from '../assets/img/other/logo.png';
+export const logoImage = logoimg;
 
 // FAKE USER DATA FOR FRONTEND
 // DELETE THIS WHEN YOU BUILD THE SERVER

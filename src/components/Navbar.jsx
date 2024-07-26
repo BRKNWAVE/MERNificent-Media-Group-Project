@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Badge } from '@mui/material';
 import { Search, ShoppingCart as ShoppingCartIcon } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
+import { isAuthenticated, signOut } from '../utils/authUtility';
+import { logoImage } from '../data/data';
 
 // Navbar container
 const Container = styled.div`
@@ -97,13 +99,31 @@ const StyledLink = styled(Link)`
 `;
 
 const Navbar = () => {
+  const [authenticated, setAuthenticated] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      const status = await isAuthenticated();
+      setAuthenticated(status);
+    };
+
+    checkAuth();
+  }, []);
+
+  const handleSignOut = () => {
+    signOut();
+    setAuthenticated(false);
+    navigate('/login'); // Redirect to login page after signing out
+  };
+
   return (
     <Container>
       <Wrapper>
         <Left>
           <StyledLink to="/">
             <LogoContainer>
-              <LogoImg src="src/assets/img/other/logo.png" alt="Logo" />
+              <LogoImg src={logoImage} alt="Logo" />
               <Logo>MERNIFICENT MEDIA</Logo>
             </LogoContainer>
           </StyledLink>
@@ -115,18 +135,29 @@ const Navbar = () => {
           </SearchContainer>
         </Centre>
         <Right>
-          <StyledLink to="/product-gallery">
-            <MenuItem>Products</MenuItem>
-          </StyledLink>
-          <StyledLink to="/about">
-            <MenuItem>About</MenuItem>
-          </StyledLink>
-          <StyledLink to="/register">
-            <MenuItem>Register</MenuItem>
-          </StyledLink>
-          <StyledLink to="/login">
-            <MenuItem>Sign In</MenuItem>
-          </StyledLink>
+          {!authenticated ? (
+            <>
+              <StyledLink to="/register">
+                <MenuItem>Register</MenuItem>
+              </StyledLink>
+              <StyledLink to="/login">
+                <MenuItem>Sign In</MenuItem>
+              </StyledLink>
+            </>
+          ) : (
+            <>
+              <StyledLink to="/product-gallery">
+                <MenuItem>Products</MenuItem>
+              </StyledLink>
+              <StyledLink to="/about">
+                <MenuItem>About</MenuItem>
+              </StyledLink>
+              <StyledLink to="/edit-account">
+                <MenuItem>Edit Account</MenuItem>
+              </StyledLink>
+              <MenuItem onClick={handleSignOut}>Sign Out</MenuItem>
+            </>
+          )}
           <MenuItem>
             <Badge badgeContent={4} color="primary">
               <ShoppingCartIcon />

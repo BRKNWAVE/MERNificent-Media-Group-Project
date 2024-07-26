@@ -2,6 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { Link as RouterLink } from 'react-router-dom';
+import { logoImage } from '../data/data';
 
 const Container = styled.div`
   display: flex;
@@ -82,7 +83,7 @@ const Footer = () => {
       <Left>
         <StyledLink to="/">
           <LogoContainer>
-            <LogoImg src="src/assets/img/other/logo.png" alt="Logo" />
+            <LogoImg src={logoImage} alt="Logo" />
             <Logo>MERNIFICENT MEDIA</Logo>
           </LogoContainer>
         </StyledLink>

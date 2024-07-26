@@ -1,29 +1,40 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import bodyParser from 'body-parser';
+import authRoutes from './routes/auth.js';
+import userRoutes from './routes/users.js';
+import authenticate from './middleware/auth.js';
 import dotenv from 'dotenv';
-import authRoutes from './routes/authRoutes.js';
-import protectedRoutes from './routes/protectedRoutes.js';
-import productRoutes from './routes/productRoutes.js';
-import adminUserRoutes from './routes/adminUserRoutes.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 dotenv.config();
+const app = express();
+app.use(express.json());
+
+// Resolve __dirname in ES module
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Serve static files from the React app (dist directory)
+app.use(express.static(path.join(__dirname, '../dist')));
+
+// API Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
+
+// Import protected routes using ES module syntax
+import protectedRoutes from './routes/protectedRoutes.js';
+app.use('/api/protected', authenticate, protectedRoutes);
+
+// All other routes should serve the React app
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist', 'index.html'));
+});
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.error('MongoDB connection error:', err));
 
-const db = mongoose.connection;
-db.on('error', (error) => console.error(error));
-db.once('open', () => console.log('Connected to Mongo DB'));
-
-const app = express();
 const PORT = process.env.PORT || 5000;
-
-app.use(bodyParser.json());
-
-app.use('/api/auth', authRoutes);
-app.use('/api/protected', protectedRoutes);
-app.use('/api/products', productRoutes);
-app.use('/api/admin/users', adminUserRoutes); // Use admin user routes
-
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
