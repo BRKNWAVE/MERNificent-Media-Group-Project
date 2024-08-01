@@ -5,8 +5,6 @@ import userRoutes from './routes/users.js';
 import authenticate from './middleware/auth.js';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import path from 'path';
-import { fileURLToPath } from 'url';
 
 dotenv.config();
 const app = express();
@@ -17,13 +15,6 @@ app.use(cors({
   origin: 'https://mernificent-media-group-project.vercel.app',
 }));
 
-// Resolve __dirname in ES module
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// Serve static files from the React app 
-app.use(express.static(path.join(__dirname, 'dist')));
-
 // API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
@@ -31,11 +22,6 @@ app.use('/api/users', userRoutes);
 // Import protected routes using ES module syntax (import instead of require)
 import protectedRoutes from './routes/protectedRoutes.js';
 app.use('/api/protected', authenticate, protectedRoutes);
-
-// Serve index.html from the React app for all routes
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
-});
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI)
