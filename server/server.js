@@ -11,6 +11,11 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
+// Avoid CORS issues by allowing requests from the frontend URL
+app.use(cors({
+  origin: 'https://mernificent-media-group-project.vercel.app',
+}));
+
 // Resolve __dirname in ES module
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
