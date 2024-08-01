@@ -4,6 +4,7 @@ import authRoutes from './routes/auth.js';
 import userRoutes from './routes/users.js';
 import authenticate from './middleware/auth.js';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
