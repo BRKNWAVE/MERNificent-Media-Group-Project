@@ -1,4 +1,5 @@
 import express from 'express';
+import { createProxyMiddleware } from 'http-proxy-middleware';
 import mongoose from 'mongoose';
 import authRoutes from './routes/auth.js';
 import userRoutes from './routes/users.js';
@@ -13,6 +14,12 @@ app.use(express.json());
 // Avoid CORS issues by allowing requests from the frontend URL
 app.use(cors({
   origin: 'https://mernificent-media-group-project.vercel.app',
+}));
+
+// Proxy frontend requests to the frontend URL
+app.use('/', createProxyMiddleware({
+  target: 'https://mernificent-media-group-project.vercel.app',
+  changeOrigin: true,
 }));
 
 // API Routes
