@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { Button as MuiButton, Input as MuiInput } from '@mui/material';
 import RegisterBG from '../assets/img/account/RegisterBG.jpg';
 
+
 // Styles for the Register component using styled-components, && specificity is used to override MUI styles for buttons throughout the application
 const Container = styled.div`
   display: flex;
@@ -85,7 +86,7 @@ const Register = () => {
     }
     try {
       // Send a registration request to the server
-      const response = await fetch('/api/auth/register', {
+      const response = await fetch('https://mernificent-media-group-project.onrender.com/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

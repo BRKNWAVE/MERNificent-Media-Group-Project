@@ -112,7 +112,7 @@ const EditAccount = () => {
     // Fetch user data and populate form fields
     const fetchUserData = async () => {
       try {
-        const response = await fetch('/api/users/profile', {
+        const response = await fetch('https://mernificent-media-group-project.onrender.com/api/users/profile', {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
           }
@@ -149,7 +149,7 @@ const EditAccount = () => {
   const handleDelete = async () => {
     if (window.confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
       try {
-        const response = await fetch('/api/users/delete', {
+        const response = await fetch('https://mernificent-media-group-project.onrender.com/api/users/delete', {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -180,7 +180,7 @@ const EditAccount = () => {
     }
 
     try {
-      const response = await fetch('/api/users/update', {
+      const response = await fetch('https://mernificent-media-group-project.onrender.com/api/users/update', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

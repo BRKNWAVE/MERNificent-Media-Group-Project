@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { Link as RouterLink } from 'react-router-dom';
 import { logoImage } from '../data/data';
+const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
 // Styles for the Footer component using Emotion
 const Container = styled.div`

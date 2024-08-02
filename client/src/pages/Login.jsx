@@ -100,7 +100,7 @@ const Login = () => {
     e.preventDefault();
     try {
       // Send a login / POST request to the server with the form data
-      const response = await fetch('/api/auth/login', {
+      const response = await fetch('https://mernificent-media-group-project.onrender.com/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

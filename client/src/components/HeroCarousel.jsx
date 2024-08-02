@@ -6,6 +6,7 @@ import styled from '@emotion/styled';
 import { carouselItems } from '../data/data';
 
 
+
 // Styles for the HeroCarousel component using Emotion
 const Container = styled.div`
   width: 100%;
