@@ -8,7 +8,7 @@ export const isAuthenticated = async () => {
 
   try {
     // Send a GET request to the server to check if the token is valid
-    const response = await fetch('/api/auth/check', {
+    const response = await fetch('https://mernificent-media-group-project.onrender.com/api/auth/check', {
       method: 'GET',
       headers: { 'x-auth-token': token },
     });

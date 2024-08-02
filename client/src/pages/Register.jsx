@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 import styled from 'styled-components';
 import { Button as MuiButton, Input as MuiInput } from '@mui/material';
 import RegisterBG from '../assets/img/account/RegisterBG.jpg';
+import { useNavigate } from 'react-router-dom';
 
 
 // Styles for the Register component using styled-components, && specificity is used to override MUI styles for buttons throughout the application
@@ -97,13 +98,18 @@ const Register = () => {
           password: formData.password
         }),
       });
-      const result = await response.json();
       if (response.ok) {
-        window.location.href = '/login'; // Redirect to login page after successful registration
+        const result = await response.json();
+        console.log('Registration successful:', result);
+        const navigate = useNavigate();
+        navigate('/login');
       } else {
-        alert(result.error); // Else show an error
+        const errorResult = await response.json();
+        console.error('Error:', errorResult);
+        alert(errorResult.error || 'Registration failed');
       }
     } catch (err) {
+      console.error('Fetch error:', err);
       alert('An error occurred');
     }
   };
