@@ -26,15 +26,6 @@ app.use('/api/users', userRoutes);
 import protectedRoutes from './routes/protectedRoutes.js';
 app.use('/api/protected', authenticate, protectedRoutes);
 
-// Serve static files from the frontend build directory
-const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, 'dist')));
-
-// Serve index.html for all non-API routes (SPA behavior)
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
-});
-
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('MongoDB connected'))
