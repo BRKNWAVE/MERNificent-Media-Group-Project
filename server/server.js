@@ -14,6 +14,8 @@ app.use(express.json());
 // Avoid CORS issues by allowing requests from the frontend URL
 app.use(cors({
   origin: 'https://mernificent-media-group-project.vercel.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
 }));
 
 // API Routes
