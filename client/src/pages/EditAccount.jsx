@@ -104,7 +104,6 @@ const EditAccount = () => {
     password: '',
     confirmPassword: ''
   });
-// Use a state to manage password visibility and default it to hide the password
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
@@ -118,34 +117,34 @@ const EditAccount = () => {
           }
         });
         const data = await response.json();
-        setFormData({
-          username: data.username || '',
-          firstName: data.firstName || '',
-          lastName: data.lastName || '',
-          email: data.email || '',
-          password: '',
-          confirmPassword: ''
-        });
+        if (response.ok) {
+          setFormData({
+            username: data.username || '',
+            firstName: data.firstName || '',
+            lastName: data.lastName || '',
+            email: data.email || '',
+            password: '',
+            confirmPassword: ''
+          });
+        } else {
+          alert(data.error || 'Failed to fetch user data');
+        }
       } catch (error) {
-        console.error('Failed to fetch user data', error); // Error catching
+        console.error('Failed to fetch user data', error);
       }
     };
 
-    fetchUserData(); // Call the function to fetch user data
+    fetchUserData();
   }, []);
 
-  // Handle any changes to the form fields
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  // Call the handlePasswordToggle function to toggle the password visibility
+
   const handlePasswordToggle = () => {
     setShowPassword(!showPassword);
   };
 
-  // Handle the delete account functionality and confirm the action with a window alert before proceeding with the delete request
-  // If the user confirms the delete action, send a DELETE request to the server to delete the account
-  // If the request is successful, show an alert to the user that the account was deleted successfully and remove the token from local storage
   const handleDelete = async () => {
     if (window.confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
       try {
@@ -158,8 +157,8 @@ const EditAccount = () => {
 
         if (response.ok) {
           alert('Account deleted successfully');
-          localStorage.removeItem('token'); // Remove token from localStorage when the account is deleted
-          navigate('/login'); // Redirect the user to login page
+          localStorage.removeItem('token');
+          navigate('/login');
         } else {
           const result = await response.json();
           alert(result.error || 'Failed to delete account');
@@ -169,9 +168,7 @@ const EditAccount = () => {
       }
     }
   };
-  // Handle the form submission and send a PUT request to the server to update the user account details
-  // If the request is successful, show an alert to the user that the account was updated successfully
-  // If the request is not successful, show an alert with the error message
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.username || !formData.firstName || !formData.lastName || !formData.email || (formData.password && formData.password !== formData.confirmPassword)) {
@@ -191,7 +188,7 @@ const EditAccount = () => {
           firstName: formData.firstName,
           lastName: formData.lastName,
           email: formData.email,
-          password: formData.password
+          password: formData.password || undefined // Only send password if it's provided
         }),
       });
       const result = await response.json();

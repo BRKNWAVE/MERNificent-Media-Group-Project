@@ -6,7 +6,6 @@ import { Button as MuiButton, Input as MuiInput } from '@mui/material';
 import RegisterBG from '../assets/img/account/RegisterBG.jpg';
 import { useNavigate } from 'react-router-dom';
 
-
 // Styles for the Register component using styled-components, && specificity is used to override MUI styles for buttons throughout the application
 const Container = styled.div`
   display: flex;
@@ -64,6 +63,7 @@ const StyledButton = styled(MuiButton)`
     }
   }
 `;
+
 // Displays a registration form and use the useState hook to manage form data
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -74,7 +74,10 @@ const Register = () => {
     password: '',
     confirmPassword: ''
   });
-// Handle form input changes and form submission
+
+  const navigate = useNavigate();
+
+  // Handle form input changes and form submission
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -101,8 +104,7 @@ const Register = () => {
       if (response.ok) {
         const result = await response.json();
         console.log('Registration successful:', result);
-        const navigate = useNavigate();
-        navigate('/login');
+        navigate('/login'); // Use navigate correctly here
       } else {
         const errorResult = await response.json();
         console.error('Error:', errorResult);
